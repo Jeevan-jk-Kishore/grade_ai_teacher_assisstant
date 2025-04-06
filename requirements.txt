@@ -1,0 +1,6 @@
+Flask
+gunicorn
+Flask-CORS
+Flask-SQLAlchemy
+python-dotenv
+requests
