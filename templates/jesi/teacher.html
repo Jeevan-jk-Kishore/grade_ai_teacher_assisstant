@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment - Gradia AI</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 3px solid #007BFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #FF007F;
+        }
+
+        .logo img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: bold;
+            align-items: center;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #F0F3F7;
+            padding: 5px 10px;
+            border-radius: 20px;
+            position:absolute;
+            left: 1070px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 5px;
+        }
+
+        .search-bar i {
+            color: gray;
+        }
+
+        /* Profile Picture */
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Main Dashboard Container */
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+            background: #EEF2F5;
+        }
+
+        /* Form Styling */
+        .dashboard-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            text-align: center;
+        }
+
+        .dashboard-form input,
+        .dashboard-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        /* File Upload Section */
+        .file-upload-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .file-upload {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 45%;
+            text-align: center;
+            border: 1px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            background: #f9f9f9;
+        }
+
+        .file-upload i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Submit Button */
+        .dashboard-form button {
+            width: 100%;
+            padding: 12px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .dashboard-form button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Gradia AI Logo">
+            <span>GRADIA AI</span>
+        </div>
+        <h2 class="dashboard-title"><i class="fas fa-file-alt"></i><center> 📝 ASSESSMENT</center></h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="profile-container">
+            <img src="meena.jpg" alt="Profile" class="profile-pic">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <form class="dashboard-form">
+            <input type="text" placeholder="Name" required>
+            <input type="text" placeholder="Register no" required>
+            <input type="text" placeholder="Class" required>
+            <textarea placeholder="Key Points........"></textarea>
+
+            <div class="file-upload-container">
+                <div class="file-upload" onclick="uploadDocument()">
+                    <i class="fas fa-camera"></i>
+                    <span>📄 Scan the document</span>
+                </div>
+                <div class="file-upload" onclick="uploadFile()">
+                    <i class="fas fa-file-pdf pdf"></i>
+                    <span>📁 Upload pdf or doc</span>
+                </div>
+            </div>
+
+            <button type="submit">Upload Results</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector(".dashboard-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Results Uploaded Successfully!");
+        });
+
+        function uploadDocument() {
+            alert("Scan document feature coming soon!");
+        }
+
+        function uploadFile() {
+            alert("File upload feature coming soon!");
+        }
+    </script>
+
+</body>
+</html>

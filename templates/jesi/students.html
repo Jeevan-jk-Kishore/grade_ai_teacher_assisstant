@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Dashboard - Gradia AI</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 3px solid #007BFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #FF007F;
+        }
+
+        .logo img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Profile Picture */
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Main Dashboard Container */
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+            background: #EEF2F5;
+        }
+
+        /* Form Styling */
+        .dashboard-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            text-align: center;
+            height: auto;
+        }
+
+        .dashboard-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Submit Button */
+        .dashboard-form button {
+            width: 100%;
+            padding: 12px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .dashboard-form button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Gradia AI Logo">
+            <span>GRADIA AI</span>
+        </div>
+        <h2 class="dashboard-title"><i class="fas fa-user-graduate"></i> STUDENT 'S DASHBOARD</h2>
+        <div class="profile-container">
+            <img src="meena.jpg" alt="Profile" class="profile-pic">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <form class="dashboard-form">
+            <input type="text" placeholder="Name" required>
+            <input type="text" placeholder="Register no" required>
+            <input type="text" placeholder="Class" required>
+
+            <button type="submit">View Results</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector(".dashboard-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Fetching Results...");
+        });
+    </script>
+
+</body>
+</html>

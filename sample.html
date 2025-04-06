@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .logo img { height: 30px; width: auto; }
+        .dashboard-container { padding: 20px; box-shadow: 5px 2px 7px 5px #e0e0e0; }
+        header { display: flex; justify-content: space-between; align-items: center; }
+        #uploadForm input, #uploadForm button { width: 100%; margin-bottom: 10px; }
+        .upload-options { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 20px; }
+        .file-upload input { display: none; }
+        .file-upload label { cursor: pointer; color: #007bff; }
+        #uploadResults, #analyzeAndGrade { background-color: #4CAF50; color: white; border: none; padding: 10px; cursor: pointer; }
+        #uploadResults:hover, #analyzeAndGrade:hover { background-color: #45a049; }
+        
+    /* Layout & Containers */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header Styles */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    header h2 {
+        font-size: 20px;
+        color: #333;
+        margin: 0;
+    }
+
+    .logo img,
+    .profile-icon {
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    /* Form Elements */
+    form input[type="email"],
+    form input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    form input[type="email"]:focus,
+    form input[type="text"]:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .upload-options {
+        margin-bottom: 15px;
+    }
+
+    .file-upload label {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .file-upload label:hover {
+        background-color: #0056b3;
+    }
+
+    /* Buttons */
+    button {
+        width: 100%;
+        background-color: #28a745;
+        color: #fff;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    #analyzeAndGrade {
+        background-color: #17a2b8;
+    }
+
+    #analyzeAndGrade:hover {
+        background-color: #117a8b;
+    }
+
+    /* Response Message Styles */
+    #responseMessage {
+        white-space: pre-wrap;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    /* Headings */
+    h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #444;
+        text-align: center;
+    }
+</style>
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="logo">
+            <img src="logo.png" alt="Logo" class="logo-icon">
+            <h2>TEACHER DASHBOARD</h2>
+            <img src="profile-icon.png" alt="Profile" class="profile-icon">
+        </header>
+        
+        <h3>Upload Student Results</h3>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="email" id="teacher_email" placeholder="Teacher Email" required>
+            <input type="text" id="name" placeholder="Student Name" required>
+            <input type="text" id="registerNo" placeholder="Register No" required>
+            <input type="text" id="class" placeholder="Class" required>
+
+            <div class="upload-options">
+                <label class="file-upload">
+                    <input type="file" id="uploadFile" name="file" accept=".pdf,.doc,.docx" required>
+                    📂 Upload PDF or DOC
+                </label>
+            </div>
+
+            <button type="submit" id="uploadResults">Upload Results</button>
+
+            <!-- NEW BUTTON for AI Grading -->
+            <button type="button" id="analyzeAndGrade">Analyze & Grade PDF</button>
+        </form>
+
+        <!-- Feedback/Grading Response from GPT-4 -->
+        <div id="responseMessage" style="white-space: pre-wrap; margin-top: 20px;"></div>
+    </div>
+    <script>
+
+
+    document.getElementById('analyzeAndGrade').addEventListener('click', async function () {
+        const fileInput = document.getElementById('uploadFile');
+        const responseBox = document.getElementById('responseMessage');
+    
+        if (fileInput.files.length === 0) {
+            alert("Please upload a PDF file.");
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+    
+        responseBox.innerText = "⏳ Analyzing and grading... Please wait.";
+        responseBox.style.color = "blue";
+    
+        try {
+            const response = await fetch("http://127.0.0.1:5001/teacher/analyze_and_grade", {
+                method: 'POST',
+                body: formData
+            });
+    
+            const result = await response.json();
+    
+            if (response.ok) {
+                responseBox.innerText = result.feedback || result.message;
+                responseBox.style.color = "green";
+            } else {
+                responseBox.innerText = result.message || "❌ Something went wrong!";
+                responseBox.style.color = "red";
+            }
+    
+        } catch (error) {
+            console.error("❌ Error:", error);
+            responseBox.innerText = "❌ Error analyzing file!";
+            responseBox.style.color = "red";
+        }
+    });
+</script>    
+
+</body>
+</html>

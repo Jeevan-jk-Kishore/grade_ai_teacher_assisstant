@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Teacher Assistant - Login</title>
+    <link rel="stylesheet" href="styles2.css">
+    <style>
+        .left-section img{
+            height: 400px;
+            margin-right: 20px;
+        }
+        .container{
+            display: flex;
+            
+            padding-right: 40px;
+            margin-left: 500px;
+            border-radius: 20px;
+            backdrop-filter: blur(100px);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 7px 5px 10px 5px #f1f1f1;
+
+        }
+        .right-section h2{
+            margin-top: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="illustration.png" alt="Login Illustration">
+        </div>
+        <div class="right-section">
+            <h2 style="margin-left: 40px;">LOGIN HERE</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <select id="userType" required>
+                        <option value="" disabled selected>Select User Type</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="signup-link">
+                <a href="signup.html">Create new account?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
